@@ -1,4 +1,4 @@
-from templates import app
+from templates.__init__ import app
 from flask import render_template, Blueprint
 
 hello_blueprint = Blueprint('hello',__name__)

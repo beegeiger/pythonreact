@@ -18,8 +18,15 @@ const config = {
             loader: 'babel-loader',
             exclude: /node_modules/,
             query:{
-                presets: ['react','es2015']
+                presets: [
+                    "@babel/preset-env",
+                    "@babel/preset-react"
+                ]
             }
+        },
+        {
+            test: /\.css$/,
+            loader: 'style-loader!css-loader?modules'
         }]
     }
 };
