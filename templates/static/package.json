@@ -1,0 +1,40 @@
+{
+  "name": "besafe_template",
+  "version": "1.0.0",
+  "description": "BeSafe React App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p --progress --config webpack.config.js",
+    "dev-build": "webpack --progress -d --config webpack.config.js",
+    "watch": "webpack --progress -d --config webpack.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beegeiger/pythonreact.git"
+  },
+  "keywords": [
+    "Python",
+    "React",
+    "BeSafe",
+    "Safety",
+    "Alerts"
+  ],
+  "author": "Dorothy Bee Geiger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beegeiger/pythonreact/issues"
+  },
+  "homepage": "https://github.com/beegeiger/pythonreact#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "save-dev": "0.0.1-security"
+  }
+}
