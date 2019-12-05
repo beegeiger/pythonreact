@@ -1,8 +1,6 @@
 from flask import Flask
 from templates.__init__ import app
 
-app = Flask(__name__)
-
 @app.route('/')
 def hello_world():
     return 'Hello to the World of Flask!'

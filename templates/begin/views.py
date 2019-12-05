@@ -1,5 +1,8 @@
-from templates.__init__ import app
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, Flask
+
+app = Flask(__name__,
+    static_folder = '../public',
+    template_folder="../static")
 
 hello_blueprint = Blueprint('hello',__name__)
 
