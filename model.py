@@ -178,10 +178,7 @@ def example_data():
 	Flag.query.delete()
 
 	
-	#Example Users
-	u1 = User(password=bcrypt.hashpw("12356".encode(), bcrypt.gensalt()), username="LaceyKittey", fname="Lacey", lname="Kittey", email="lkitty@.com", created_at=datetime.now(), edited_at=datetime.now())
-	u2 = User(password=bcrypt.hashpw("abcdef".encode(), bcrypt.gensalt()), username="HappyDoc", fname="Happy", lname="Doc", email="HDoc@.com", created_at=datetime.now(), edited_at=datetime.now())
-	u3 = User(password=bcrypt.hashpw("Testing".encode(), bcrypt.gensalt()), username="Testing", fname="Dev", lname="Tester", email="Testing@gmail.com", created_at=datetime.now(), edited_at=datetime.now())
+
 	
 
 
