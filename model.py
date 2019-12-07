@@ -8,12 +8,11 @@ from sqlalchemy import Column, ForeignKey, Integer, Unicode, inspect, create_eng
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from flask_debugtoolbar import DebugToolbarExtension
-
+from templates.__init__ import app
 # from server import app
 
 # Required to use Flask sessions and the debug toolbar
 engine = create_engine('sqlite:///:besafe:', echo=True)
-app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///besafe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy()
