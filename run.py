@@ -30,7 +30,21 @@ app.secret_key = "ABC"
 app.jinja_env.undefined = StrictUndefined
 
 
+################################################################
+oauth = OAuth(app)
 
+auth0 = oauth.register(
+    'auth0',
+    client_id=oauth_client_id,
+    client_secret=oauth_client_secret,
+    api_base_url='https://dev-54k5g1jc.auth0.com',
+    access_token_url='https://dev-54k5g1jc.auth0.com/oauth/token',
+    authorize_url='https://dev-54k5g1jc.auth0.com/authorize',
+    client_kwargs={
+        'scope': 'openid profile email',
+    },
+)
+################################################################
 
 
 
