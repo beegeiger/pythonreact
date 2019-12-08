@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, redirect, request, flash,
                    session, jsonify)
 from templates.__init__ import app
-from templates.begin.views import hello_blueprint
+from templates.begin.views import hello_blueprint, oauth, auth0, requires_auth
 
 import math
 import time
@@ -31,33 +31,38 @@ app.jinja_env.undefined = StrictUndefined
 
 
 ################################################################
-oauth = OAuth(app)
 
-auth0 = oauth.register(
-    'auth0',
-    client_id=oauth_client_id,
-    client_secret=oauth_client_secret,
-    api_base_url='https://dev-54k5g1jc.auth0.com',
-    access_token_url='https://dev-54k5g1jc.auth0.com/oauth/token',
-    authorize_url='https://dev-54k5g1jc.auth0.com/authorize',
-    client_kwargs={
-        'scope': 'openid profile email',
-    },
-)
-################################################################
+@app.route('/callback')
+def callback_handling():
+    # Handles response from token endpoint
+    auth0.authorize_access_token()
+    resp = auth0.get('userinfo')
+    userinfo = resp.json()
+    # Store the user information in flask session.
+    session['jwt_payload'] = userinfo
+    session['profile'] = {
+        'user_id': userinfo['sub'],
+        'name': userinfo['name'],
+        'picture': userinfo['picture'],
+        'email': userinfo['email']
+    }
 
-def requires_auth(f):
-    """Creats Decorator from AuthO to only allow logged-in users access to 
-    certain paths/routes within the application"""
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        if 'profile' not in session:
-            # Redirect to Login page here
-            return redirect('/')
-        return f(*args, **kwargs)
-    return decorated
+    #Sets the 'current_user' value in the session to the user's e-mail
+    session['current_user'] = userinfo['email']
 
-#################################################################
+    #User Table is Queried to see if User already exists in dB
+    user = User.query.filter_by(email=userinfo['email']).all()
+    
+    #If the user isn't in the dBase, they are added
+    if user == []:
+        new_user = User(name=userinfo['name'], email=userinfo['email'], username=userinfo['nickname'], fname=userinfo['given_name'], lname=userinfo['family_name'], created_at=datetime.datetime.now())
+        db.session.add(new_user)
+    
+    #The dBase changes are committed
+    db.session.commit()
+
+    #Redirects to the User Profile
+    return redirect('/')
 
 
 #################################################################
