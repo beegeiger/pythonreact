@@ -65,6 +65,17 @@ def callback_handling():
     return redirect('/')
 
 
+@app.route("/logout")
+def logout():
+    """Logs user out and deletes them from the session (Tested)"""
+
+    # Clear session stored data
+    session.clear
+
+    # Redirect user to logout endpoint
+    params = {'returnTo': url_for('go_home', _external=True), 'client_id': '78rUTjeVusqU3vYXyvNpOQiF8jEacf55'}
+    return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
+
 #################################################################
 if __name__ == '__main__':
     app.config.from_object('configurations.DevelopmentConfig')
