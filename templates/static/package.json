@@ -37,6 +37,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^3.2.1",
     "history": "^4.10.1",

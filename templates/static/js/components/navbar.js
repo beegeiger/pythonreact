@@ -1,30 +1,18 @@
-import { Menu } from 'antd';
-import React from 'react';
+import React from "react";
+import { useAuth0 } from "../react-auth0-spa";
 
-export class NavBar extends React.Component {
-    // handleClick = e => {
-    //     console.log('click ', e);
-    //     this.setState({
-    //         current: e.key,
-    //     });
-    // };
+const NavBar = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
-    render() {
-        return (
-            <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
-            <Menu.Item key="home">
-              BeSafe Home
-            </Menu.Item>
-            <Menu.Item key="contacts">
-              Contacts
-            </Menu.Item>
-            <Menu.Item key="profile">
-              User Profile
-            </Menu.Item>
-            <Menu.Item key="login">
-              Login
-            </Menu.Item>
-          </Menu>
-        )
-    }
-}
+  return (
+    <div>
+      {!isAuthenticated && (
+        <button onClick={() => loginWithRedirect({})}>Log in</button>
+      )}
+
+      {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+    </div>
+  );
+};
+
+export default NavBar;
