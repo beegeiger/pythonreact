@@ -1,3 +1,5 @@
 /env
 /node_modules
 /templates/static/node_modules
+secrets.sh
+secrets.py
