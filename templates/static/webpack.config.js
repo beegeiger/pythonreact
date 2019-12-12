@@ -27,6 +27,14 @@ const config = {
         {
             test: /\.css$/,
             loader: 'style-loader!css-loader?modules'
+        },
+        {
+            test:  /\.json$/,
+            exclude: /node_modules/,
+            use: {
+              // included by default (https://webpack.js.org/loaders/json-loader/)
+              loader: 'json-loader' 
+            }
         }]
     }
 };
