@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { prefix } from "../urlprefix"
+// import { prefix } from "../urlprefix"
 import { createForm } from "rc-form";
 
 import {
@@ -21,15 +21,15 @@ const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
 export class ContactForm extends React.Component{
-    handleSubmit(e) {
-        e.preventDefault();
-        var formData = new FormData(form)
-        let uri = prefix + "/contacts"
-        fetch(url, {
-            method: 'post',
-            body: formData,
-        })
-    }
+    // handleSubmit(e) {
+    //     e.preventDefault();
+    //     var formData = new FormData(form)
+    //     let uri = prefix + "/contacts"
+    //     fetch(url, {
+    //         method: 'post',
+    //         body: formData,
+    //     })
+    // }
     render() {
         const  getFieldDecorator  = this.props.form;
         const  autoCompleteResult  = this.state;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContactForm } from './components/contactform';
-import { Contact } from './components/contact';
+import { ContactForm } from './static/js/components/contactform';
+import { Contact } from './static/js/components/contact';
 import 'antd/dist/antd.css';
-import NavBar from "./components/NavBar";
+import NavBar from "./static/js/components/navbar";
 import { useAuth0 } from "./react-auth0-spa";
 
 
