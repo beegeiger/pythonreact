@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "./static/node_modules/react";
-import createAuth0Client from "./static/node_modules/@auth0";
+import createAuth0Client from "./static/node_modules/@auth0/auth0-spa-js";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);

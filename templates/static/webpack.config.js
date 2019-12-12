@@ -33,7 +33,7 @@ const config = {
             exclude: /node_modules/,
             use: {
               // included by default (https://webpack.js.org/loaders/json-loader/)
-              loader: 'json-loader' 
+              loader: 'json-parse-better-errors' 
             }
         }]
     }
