@@ -18,8 +18,10 @@ function App() {
       <div className="App">
          <header>
          <NavBar />
-
          </header>
+         <body>
+            <p>This is in App.js. The Navbar should be above^</p>
+         </body>
       </div>
    );
 }

@@ -1,1 +1,3 @@
-export default createBrowserHistory();
+const history = createBrowserHistory();
+
+export default history;

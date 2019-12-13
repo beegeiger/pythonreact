@@ -1,7 +1,7 @@
 from flask import (Flask, render_template, redirect, request, flash,
                    session, jsonify)
 from templates.__init__ import app
-from templates.begin.views import hello_blueprint, oauth, auth0, requires_auth
+from templates.begin.views import hello_blueprint
 
 import math
 import time
@@ -26,8 +26,7 @@ db.init_app(app)
 # Required to use Flask sessions and the debug toolbar
 app.secret_key = "ABC"
 
-# Causes error messages for undefined variables in jinja
-app.jinja_env.undefined = StrictUndefined
+
 
 
 ################################################################

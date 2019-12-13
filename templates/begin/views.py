@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, Flask
 from authlib.integrations.flask_client import OAuth
 from six.moves.urllib.parse import urlencode
-from secrets import oauth_client_secret, oauth_client_id, google_maps_key
+# from secrets import oauth_client_secret, oauth_client_id, google_maps_key
 
 #####################################################3
 app = Flask(__name__,
