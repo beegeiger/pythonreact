@@ -27,7 +27,7 @@ const Content = () => {
             loginWithRedirect()
           }}
         >
-          Learn Awesome React
+          Login
         </a>
         <div onClick={() => logout()}>Logout</div>
       </header>
@@ -47,7 +47,6 @@ export const App = () => {
       >
         <Router>
           <Route path="/" exact component={Content}/>
-          {/* <PrivateRoute path="/private" exact component={() => <div>Boo</div>} /> */}
         </Router>
       </Auth0Provider>
     </>
