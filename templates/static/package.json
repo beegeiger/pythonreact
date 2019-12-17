@@ -39,11 +39,11 @@
   },
   "dependencies": {
     "@auth0/auth0-spa-js": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
     "css-loader": "^3.2.1",
     "history": "^4.10.1",
     "react-router-dom": "^5.1.2",
     "save-dev": "0.0.1-security",
+    "simple-auth0-react": "0.0.3",
     "style-loader": "^1.0.1"
   }
 }
