@@ -9,17 +9,10 @@ const Content = () => {
   return (
     <div className="App">
       {user && <div>
-        The user is logged in
+        <div onClick={() => logout()}>Logout</div>
       </div>}
       {!user && <div>
-        you're not logged in sucker
-      </div>}
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <pre><code>{JSON.stringify({user}, null, '  ')}</code></pre>
+        
         <a
           className="App-link"
           href="javascript:void(0)"
@@ -29,7 +22,15 @@ const Content = () => {
         >
           Login
         </a>
-        <div onClick={() => logout()}>Logout</div>
+      </div>}
+      <header className="App-header">
+      <pre><code>{JSON.stringify({user}, null, '  ')}</code></pre>
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        
+        
       </header>
     </div>
   );
