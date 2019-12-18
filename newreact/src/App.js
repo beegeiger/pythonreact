@@ -1,35 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Auth0Provider, useAuth0, onRedirectCallback, PrivateRoute} from 'simple-auth0-react'
+import './semantic/dist/semantic.min.css';
+import {Auth0Provider, useAuth0, onRedirectCallback } from 'simple-auth0-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Menu } from './Menu';
 
 const Content = () => {
   const { loginWithRedirect, user, logout } = useAuth0()
   return (
     <div className="App">
+      <Menu />
       {user && <div>
         <div onClick={() => logout()}>Logout</div>
       </div>}
-      {!user && <div>
-        
-        <a
-          className="App-link"
+      {!user && <div> 
+        <a className="App-link"
           href="javascript:void(0)"
-          onClick={() => {
-            loginWithRedirect()
-          }}
-        >
+          onClick={() => { loginWithRedirect()}} >
           Login
         </a>
       </div>}
       <header className="App-header">
-      <pre><code>{JSON.stringify({user}, null, '  ')}</code></pre>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        
+      {/* <pre><code>{JSON.stringify({user}, null, '  ')}</code></pre> */}
+       
         
       </header>
     </div>

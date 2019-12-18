@@ -6,6 +6,7 @@
 .pnp.js
 /semantic
 /newreact/sematic
+/newreact/src/semantic
 
 # testing
 /coverage
