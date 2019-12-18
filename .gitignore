@@ -3,3 +3,28 @@
 /templates/static/node_modules
 secrets.sh
 secrets.py
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+/semantic
+/newreact/sematic
+/newreact/src/semantic
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
