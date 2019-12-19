@@ -17,11 +17,11 @@ export const Contact = props => {
                         </div>
                     </div>
                 <div class="ui bottom attached button">
-                <i class="add icon"></i>
+                <i class="setting basic icon"></i>
                 Edit Contact
                 </div>
                 <div class="ui bottom attached button">
-                <i class="add icon"></i>
+                <i class="cancel circle basic icon"></i>
                 Delete Contact
                 </div>
             </div>
