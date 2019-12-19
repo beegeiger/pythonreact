@@ -2,6 +2,8 @@ import React from 'react';
 import { Contact } from './contact';
 import { prefix } from "../urlprefix"
 
+export const Contacts
+
 export class Contacts extends React.Component{
     componentWillMount() {
         let uri = prefix + "/view_contacts"
