@@ -3,12 +3,14 @@ import './semantic/dist/semantic.min.css';
 import {Auth0Provider, useAuth0, onRedirectCallback } from 'simple-auth0-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Menu } from './Menu';
+import { Contacts } from './Contacts';
 
 const Content = () => {
   const { loginWithRedirect, user, logout } = useAuth0()
   return (
     <div className="App">
       <Menu />
+      <Contacts />
       {user && <div>
         <div onClick={() => logout()}>Logout</div>
       </div>}

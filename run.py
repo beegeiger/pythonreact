@@ -63,6 +63,16 @@ def callback_handling():
     #Redirects to the User Profile
     return redirect('/')
 
+@app.route("/contacts")
+def user_contacts():
+    """Renders the User's 'contacts' Page"""
+
+    #Queries the current user and their contact info
+    c1 = {'name': 'Bob', 'email': 'bob@gmail.com', 'phone': '555-1010'}
+    c2 = {'name': 'Susan', 'email': 'susan@gmail.com', 'phone': '555-2010'}
+    contacts = [c1, c2]
+
+    return c1
 
 @app.route("/logout")
 def logout():
