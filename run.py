@@ -15,6 +15,7 @@ from sqlalchemy import (update, asc, desc)
 from model import User, Contact, AlertSet, Alert, CheckIn, ReqCheck, connect_to_db, db
 import requests
 import logging
+from flask_cors import CORS
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///besafe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -25,6 +26,7 @@ db.init_app(app)
 
 # Required to use Flask sessions and the debug toolbar
 app.secret_key = "ABC"
+CORS(app)
 
 
 
@@ -70,9 +72,10 @@ def user_contacts():
     #Queries the current user and their contact info
     c1 = {'name': 'Bob', 'email': 'bob@gmail.com', 'phone': '555-1010'}
     c2 = {'name': 'Susan', 'email': 'susan@gmail.com', 'phone': '555-2010'}
-    contacts = [c1, c2]
+    cs = [c1, c2]
+    contacts = json.dumps(cs)
 
-    return c1
+    return contacts
 
 @app.route("/logout")
 def logout():

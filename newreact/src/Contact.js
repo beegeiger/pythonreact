@@ -1,9 +1,9 @@
 import React from 'react';
 
 export const Contact = props => {
-    const name = this.props.name
-    const email = this.props.email
-    const phone = this.props.phone
+    const name = props.name
+    const email = props.email
+    const phone = props.phone
     return (
         <div class="ui cards">
             <div class="card">
