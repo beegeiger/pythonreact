@@ -22,28 +22,28 @@ export const ContactForm = props => {
                     <form class="ui form">
                         <div class="header">
                             <div class="field">
-                                <input type="text" name="name" placeholder={ name }>
+                                <input type="text" name="name" placeholder={ name } />
                             </div>
                         </div>
                         <div class="description">
                             <div class="field">
-                                <input type="text" name="email" placeholder={ email }>
+                                <input type="text" name="email" placeholder={ email } />
                             </div>
                         </div>
                         <div class="description">
                             <div class="field">
-                                <input type="text" name="phone" placeholder={ phone }>
+                                <input type="text" name="phone" placeholder={ phone } />
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="ui bottom attached button">
-                <i class="setting basic icon"></i>
-                Edit Contact
+                    <i class="setting basic icon"></i>
+                    Edit Contact
                 </div>
                 <div class="ui bottom attached button">
-                <i class="cancel circle basic icon"></i>
-                Delete Contact
+                    <i class="cancel circle basic icon"></i>
+                    Delete Contact
                 </div>
             </div>
         </div>
