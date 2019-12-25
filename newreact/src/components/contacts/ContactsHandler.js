@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Contact } from './Contact';
+import { ContactContainer } from './ContactContainer';
 
 
 
@@ -23,12 +23,12 @@ export const ContactsHandler = props => {
     const conlen = cons.length;
     const conret = []
     for (var i = 0; i < conlen; i++) {
-        conret.push(<Contact name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
+        conret.push(<ContactContainer name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
     }
 
     return (
         <>
-        <Contact name="Placeholder" phone="Placeholder" email="Placeholder" />
+        <ContactContainer name="Placeholder" phone="Placeholder" email="Placeholder" />
         { conret }
         </>
     );

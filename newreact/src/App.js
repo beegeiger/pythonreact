@@ -3,7 +3,7 @@ import './semantic/dist/semantic.min.css';
 import {Auth0Provider, useAuth0, onRedirectCallback } from 'simple-auth0-react'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import { Menu } from './Menu';
-import { ContactsHandler } from './ContactsHandler';
+import { ContactsHandler } from './components/contacts/ContactsHandler';
 
 const Content = () => {
   const { loginWithRedirect, user, logout } = useAuth0()
