@@ -1,8 +1,8 @@
 import React from 'react';
-import { ContactForm } from 'ContactForm';
-import { Contact } from 'Contact';
+import { ContactForm } from './ContactForm';
+import { Contact } from './Contact';
 
-export const Contact = props => {
+export const ContactContainer = props => {
     let name = ''
     let email = ''
     let phone = ''
@@ -21,7 +21,7 @@ export const Contact = props => {
         <div class="ui cards">
             <div class="card">
                 <Contact name={ name } phone={ phone } email={ email } />
-                <ContactForm name={ name } phone={ phone } email={ email } class='hidden' />
+                <ContactForm name={ name } phone={ phone } email={ email } vis='hidden' />
             </div>
         </div>
     );

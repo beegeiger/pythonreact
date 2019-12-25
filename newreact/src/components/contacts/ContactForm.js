@@ -4,8 +4,9 @@ export const ContactForm = props => {
     const name = props.name
     const email = props.email
     const phone = props.phone
+    let vis = props.vis
     return (
-        <>
+        <div class={ vis }>
         <div class="content">
             <form class="ui form">
                 <div class="header">
@@ -33,6 +34,6 @@ export const ContactForm = props => {
             <i class="cancel circle basic icon"></i>
             Delete Contact
         </div>  
-        </>
+        </div>
     );
 };
