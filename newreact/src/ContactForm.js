@@ -1,9 +1,9 @@
 import React from 'react';
 
 export const ContactForm = props => {
-    let name = "Contact Name"
-    let email = "Contact E-mail"
-    let phone = "Contact Phone #"
+    let name = ''
+    let email = ''
+    let phone = ''
 
     if (typeof props.name !== 'undefined' || props.name.length > 0) {
         name = props.name
@@ -22,24 +22,24 @@ export const ContactForm = props => {
                     <form class="ui form">
                         <div class="header">
                             <div class="field">
-                                <input type="text" name="name" placeholder={ name } />
+                                <input type="text" name="name" placeholder="Contact Name" value={ name } />
                             </div>
                         </div>
                         <div class="description">
                             <div class="field">
-                                <input type="text" name="email" placeholder={ email } />
+                                <input type="text" name="email" placeholder="Contact E-mail" value={ email } />
                             </div>
                         </div>
                         <div class="description">
                             <div class="field">
-                                <input type="text" name="phone" placeholder={ phone } />
+                                <input type="text" name="phone" placeholder="Contact Phone #" value={ phone } />
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="ui bottom attached button">
                     <i class="setting basic icon"></i>
-                    Edit Contact
+                    Save Contact
                 </div>
                 <div class="ui bottom attached button">
                     <i class="cancel circle basic icon"></i>
