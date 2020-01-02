@@ -18,10 +18,6 @@ export const Contact = props => {
                 E-mail: { email }
             </div>
         </div>
-        <div class="ui bottom attached button">
-        <i class="setting basic icon"></i>
-        Edit Contact
-        </div>
         </>
     );
 };

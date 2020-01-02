@@ -26,14 +26,7 @@ export const ContactForm = props => {
                 </div>
             </form>
         </div>
-        <div class="ui bottom attached button">
-            <i class="setting basic icon"></i>
-            Save Contact
-        </div>
-        <div class="ui bottom attached button">
-            <i class="cancel circle basic icon"></i>
-            Delete Contact
-        </div>  
+ 
         </div>
     );
 };
