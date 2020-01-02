@@ -29,8 +29,8 @@ export const ContactContainer = props => {
                         Edit Contact
                     </div>
                 </div>
-                <div id="formDisplay">
-                    <ContactForm name={ name } phone={ phone } email={ email } vis='hidden' />
+                <div id="formDisplay"  vis='hidden' >
+                    <ContactForm name={ name } phone={ phone } email={ email }/>
                     <div class="ui bottom attached button">
                         <i class="setting basic icon"></i>
                         Save Contact
