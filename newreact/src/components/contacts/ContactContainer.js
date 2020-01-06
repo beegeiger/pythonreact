@@ -24,14 +24,14 @@ export const ContactContainer = props => {
             <div class="card">
                 <div id="conDisplay">
                     <Contact name={ name } phone={ phone } email={ email } />
-                    <div class="ui bottom attached button">
+                    <div onclick={() => setVisState('form')} class="ui bottom attached button">
                         <i class="setting basic icon"></i>
                         Edit Contact
                     </div>
                 </div>
                 <div id="formDisplay"  vis='hidden' >
                     <ContactForm name={ name } phone={ phone } email={ email }/>
-                    <div class="ui bottom attached button">
+                    <div class="ui bottom attached button" onclick={() => setVisState('display')}>
                         <i class="setting basic icon"></i>
                         Save Contact
                     </div>
