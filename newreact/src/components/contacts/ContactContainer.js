@@ -17,7 +17,11 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
-    let [visState, setVisState] = useState('display')
+    let [visState, setVisState] = useState('co')
+
+    function handleChange(newValue) {
+        setValue(newValue);
+      }
 
     return (
         <div class="ui cards">
@@ -31,14 +35,7 @@ export const ContactContainer = props => {
                 </div>
                 <div id="formDisplay"  vis='hidden' >
                     <ContactForm name={ name } phone={ phone } email={ email }/>
-                    <div class="ui bottom attached button" onclick={() => setVisState('display')}>
-                        <i class="setting basic icon"></i>
-                        Save Contact
-                    </div>
-                    <div class="ui bottom attached button">
-                        <i class="cancel circle basic icon"></i>
-                        Delete Contact
-                    </div> 
+
                 </div>
             </div>
         </div>
