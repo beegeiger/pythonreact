@@ -6,11 +6,18 @@ export const ContactForm = props => {
     const phone = props.phone
     let vis = props.vis
 
-    function handleSave(event) {
-        // Here, we invoke the callback with the new value
-        props.onChange(event.target.value);
+    function handleChange(key) {
+        return function (e) {
+          var state = {};
+          state[key] = e.target.value;
+          this.setState(state);
+        }.bind(this);
+    }
+
+    function handleSave() {
+        
         setVisState('display');
-      }
+    }
 
     return (
         <div class={ vis }>
@@ -18,20 +25,20 @@ export const ContactForm = props => {
             <form class="ui form">
                 <div class="header">
                     <div class="field">
-                        <input type="text" name="name" placeholder="Contact Name" value={ name } />
+                        <input type="text" name="name" placeholder="Contact Name" value={ name } onChange={this.handleChange('name')} />
                     </div>
                 </div>
                 <div class="description">
                     <div class="field">
-                        <input type="text" name="email" placeholder="Contact E-mail" value={ email } />
+                        <input type="text" name="email" placeholder="Contact E-mail" value={ email } onChange={this.handleChange('email')} />
                     </div>
                 </div>
                 <div class="description">
                     <div class="field">
-                        <input type="text" name="phone" placeholder="Contact Phone #" value={ phone } />
+                        <input type="text" name="phone" placeholder="Contact Phone #" value={ phone } onChange={this.handleChange('phone')} />
                     </div>
                 </div>
-                <div class="ui bottom attached button" onclick={() => }>
+                <div class="ui bottom attached button" onclick={handleSave()}>
                         <i class="setting basic icon"></i>
                         Save Contact
                     </div>

@@ -17,7 +17,7 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
-    let [visState, setVisState] = useState('co')
+    let [visState, setVisState] = useState('conMain')
 
     function handleChange(newValue) {
         setValue(newValue);
