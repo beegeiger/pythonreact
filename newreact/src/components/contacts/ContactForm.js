@@ -6,9 +6,10 @@ export const ContactForm = props => {
     const phone = props.phone
     let vis = props.vis
 
-    function handleChange(event) {
+    function handleSave(event) {
         // Here, we invoke the callback with the new value
         props.onChange(event.target.value);
+        setVisState('display');
       }
 
     return (
@@ -30,7 +31,7 @@ export const ContactForm = props => {
                         <input type="text" name="phone" placeholder="Contact Phone #" value={ phone } />
                     </div>
                 </div>
-                <div class="ui bottom attached button" onclick={() => setVisState('display')}>
+                <div class="ui bottom attached button" onclick={() => }>
                         <i class="setting basic icon"></i>
                         Save Contact
                     </div>
@@ -39,6 +40,7 @@ export const ContactForm = props => {
                         Delete Contact
                     </div> 
             </form>
+            <pre>{JSON.stringify(this.getFormData(), null, 4)}</pre>
         </div>
  
         </div>
