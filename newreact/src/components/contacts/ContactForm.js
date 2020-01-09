@@ -6,16 +6,31 @@ export const ContactForm = props => {
     const phone = props.phone
     let vis = props.vis
 
+    let conForm = {};
+
     function handleChange(key) {
         return function (e) {
-          var state = {};
-          state[key] = e.target.value;
-          this.setState(state);
+          conForm[key] = e.target.value;
+          this.setState(conForm);
+          console.log(conFirm);
         }.bind(this);
     }
 
     function handleSave() {
-        
+        fetch('http://127.0.0.1:5000/savecontact', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+            .catch((error) => {
+            console.error('Error:', error);
+        });
         setVisState('display');
     }
 
