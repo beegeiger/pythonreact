@@ -18,12 +18,12 @@ export const ContactsHandler = props => {
         }
     
         fetchData();
-    }, []);
+    }, [setVisState]);
 
     const conlen = cons.length;
     const conret = []
     for (var i = 0; i < conlen; i++) {
-        conret.push(<ContactContainer name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
+        conret.push(<ContactContainer conId={ cons[i].conId } name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
     }
 
     return (

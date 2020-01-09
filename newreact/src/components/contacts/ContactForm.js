@@ -4,6 +4,7 @@ export const ContactForm = props => {
     const name = props.name
     const email = props.email
     const phone = props.phone
+    const conId = props.conID
     let vis = props.vis
 
     let conForm = {};
@@ -22,7 +23,7 @@ export const ContactForm = props => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(conForm),
         })
         .then((response) => response.json())
         .then((data) => {
@@ -32,6 +33,25 @@ export const ContactForm = props => {
             console.error('Error:', error);
         });
         setVisState('display');
+    }
+
+    function handleDelete() {
+        fetch('http://127.0.0.1:5000/deletecontact', {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'conId': conId}),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+        })
+            .catch((error) => {
+            console.error('Error:', error);
+        });
+        setVisState('delete');
+    }
     }
 
     return (
@@ -57,7 +77,7 @@ export const ContactForm = props => {
                         <i class="setting basic icon"></i>
                         Save Contact
                     </div>
-                    <div class="ui bottom attached button">
+                    <div class="ui bottom attached button" onclick={handleDelete()}>
                         <i class="cancel circle basic icon"></i>
                         Delete Contact
                     </div> 

@@ -70,8 +70,8 @@ def user_contacts():
     """Renders the User's 'contacts' Page"""
 
     #Queries the current user and their contact info
-    c1 = {'name': 'Bob', 'email': 'bob@gmail.com', 'phone': '555-1010'}
-    c2 = {'name': 'Susan', 'email': 'susan@gmail.com', 'phone': '555-2010'}
+    c1 = {'name': 'Bob', 'email': 'bob@gmail.com', 'phone': '555-1010', 'conID': 1}
+    c2 = {'name': 'Susan', 'email': 'susan@gmail.com', 'phone': '555-2010', 'conID': 2}
     cs = [c1, c2]
     contacts = json.dumps(cs)
 

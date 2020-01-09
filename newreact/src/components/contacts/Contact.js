@@ -5,6 +5,7 @@ export const Contact = props => {
     const name = props.name
     const email = props.email
     const phone = props.phone
+    const conId = props.conID
     return (
         <>
         <div class="content">
