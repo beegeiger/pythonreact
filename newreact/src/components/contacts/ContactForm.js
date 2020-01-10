@@ -4,8 +4,12 @@ export const ContactForm = props => {
     const name = props.name
     const email = props.email
     const phone = props.phone
-    const conId = props.conID
+    let conId = 'new'
     let vis = props.vis
+
+    if (typeof props.ConId !== 'undefined' || props.ConId.length > 0) {
+        conId = props.conId
+    }
 
     let conForm = {};
 
@@ -36,8 +40,8 @@ export const ContactForm = props => {
     }
 
     function handleDelete() {
-        fetch('http://127.0.0.1:5000/delete_contact', {
-            method: 'POST', // or 'PUT'
+        fetch(('http://127.0.0.1:5000/delete_contact' + conID), {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -60,7 +64,7 @@ export const ContactForm = props => {
             <form class="ui form">
                 <div class="header">
                     <div class="field">
-                        <input type="text" name="name" placeholder="Contact Name" value={ name } onChange={this.handleChange('name')} />
+                        <input type="text" name="name" placeholder="Contact Name" value={ name } onChange={this.handleChange('name')} required/>
                     </div>
                 </div>
                 <div class="description">

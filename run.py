@@ -80,6 +80,40 @@ def user_contacts():
 
     return contacts
 
+@app.route("/del_contact/<contact_id>")
+def delete_contact(contact_id):
+    """Deletes a user's contact from the dBase"""
+
+    #Queries the contact in question, deletes it from the dBase, and commits
+    contact = Contact.query.filter_by(contact_id=contact_id).one()
+    db.session.delete(contact)
+    db.session.commit()
+
+    return "Contact Deleted"
+
+@app.route("/edit_contact/<contact_id>", methods=["POST"])
+def edit_contact(contact_id):
+    """Edit's a contact's info"""
+
+    #Creates variables from the form on the contacts page
+    name = request.form['name']
+    phone = request.form['phone']
+    email = request.form['email']
+
+    user = User.query.filter_by(email=userinfo['email']).all()
+
+    if contact_id != 'new':
+        ((db.session.query(Contact).filter_by(contact_id=contact_id)).update(
+        {'name':name, 'email':email, 'phone':phone}))
+    else:
+        new_contact = Contact(user_id=user.user_id, name=name, email=email, phone=phone)
+        db.session.add(new_contact)
+    db.session.commit()
+
+    contact = Contact.query.filter_by(name=name).one()
+
+    return contact.contact_id
+
 @app.route("/logout")
 def logout():
     """Logs user out and deletes them from the session (Tested)"""
