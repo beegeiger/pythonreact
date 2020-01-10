@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
@@ -17,24 +17,21 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
-    let [visState, setVisState] = useState('conMain')
+    const [visState, setVisState] = useState('conMain')
 
-    function handleChange(newValue) {
-        setValue(newValue);
-      }
 
     return (
         <div class="ui cards">
             <div class="card">
                 <div id="conDisplay">
-                    <Contact name={ name } phone={ phone } email={ email } />
+                    <Contact name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                     <div onclick={() => setVisState('form')} class="ui bottom attached button">
                         <i class="setting basic icon"></i>
                         Edit Contact
                     </div>
                 </div>
                 <div id="formDisplay"  vis='hidden' >
-                    <ContactForm name={ name } phone={ phone } email={ email }/>
+                    <ContactForm name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
 
                 </div>
             </div>

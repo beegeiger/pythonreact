@@ -6,8 +6,9 @@ export const ContactForm = props => {
     const phone = props.phone
     let conId = 'new'
     let vis = props.vis
+    const setVisState = props.viewFunction
 
-    if (typeof props.ConId !== 'undefined' || props.ConId.length > 0) {
+    if (typeof props.ConId !== 'undefined') {
         conId = props.conId
     }
 
@@ -17,12 +18,12 @@ export const ContactForm = props => {
         return function (e) {
           conForm[key] = e.target.value;
           this.setState(conForm);
-          console.log(conFirm);
+          console.log(conForm);
         }.bind(this);
     }
 
     function handleSave() {
-        fetch(('http://127.0.0.1:5000/save_contact/' + conID), {
+        fetch(('http://127.0.0.1:5000/save_contact/' + conId), {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ export const ContactForm = props => {
     }
 
     function handleDelete() {
-        fetch(('http://127.0.0.1:5000/delete_contact' + conID), {
+        fetch(('http://127.0.0.1:5000/delete_contact' + conId), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

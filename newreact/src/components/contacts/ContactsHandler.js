@@ -18,7 +18,7 @@ export const ContactsHandler = props => {
         }
     
         fetchData();
-    }, [setVisState]);
+    }, []);
 
     const conlen = cons.length;
     const conret = []
