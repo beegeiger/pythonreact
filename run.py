@@ -69,6 +69,9 @@ def callback_handling():
 def user_contacts():
     """Renders the User's 'contacts' Page"""
 
+    # user = User.query.filter_by(email=session['current_user']).one()
+    # contacts = Contact.query.filter_by(user_id=user.user_id).order_by(asc(Contact.contact_id)).all()
+
     #Queries the current user and their contact info
     c1 = {'name': 'Bob', 'email': 'bob@gmail.com', 'phone': '555-1010', 'conID': 1}
     c2 = {'name': 'Susan', 'email': 'susan@gmail.com', 'phone': '555-2010', 'conID': 2}

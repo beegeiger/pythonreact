@@ -18,7 +18,7 @@ export const ContactForm = props => {
     }
 
     function handleSave() {
-        fetch('http://127.0.0.1:5000/savecontact', {
+        fetch(('http://127.0.0.1:5000/save_contact/' + conID), {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const ContactForm = props => {
     }
 
     function handleDelete() {
-        fetch('http://127.0.0.1:5000/deletecontact', {
+        fetch('http://127.0.0.1:5000/delete_contact', {
             method: 'POST', // or 'PUT'
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ export const ContactForm = props => {
         });
         setVisState('delete');
     }
-    }
+    
 
     return (
         <div class={ vis }>
