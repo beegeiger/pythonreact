@@ -1,8 +1,8 @@
 import React  from 'react';
 import Clock from 'react-live-clock';
  
-exports default class MyComponent extends React.Component {
-    render() {
+export const LocalTime = props => {
+    return( 
         <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Pacific'} />
-    }
+    )
 }
