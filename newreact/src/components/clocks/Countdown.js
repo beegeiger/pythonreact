@@ -1,54 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+
 
 export const Countdown = props => {
-    function count{{ set.alert_set_id }}(change = 0) {
-        t{{ set.alert_set_id }} = (t{{ set.alert_set_id }} - 1000);
-        var t = t{{ set.alert_set_id }};
-        var seconds = Math.floor( (t/1000) % 60 );
-        var minutes = Math.floor( (t/1000/60) % 60 );
-        var hours = Math.floor( (t/(1000*60*60)) % 24 );
-        var days = Math.floor( t/(1000*60*60*24) );
+    // modified code from https://alligator.io/react/countdown-timer-react-hooks/
+    const calculateTimeLeft = () => {
+        const difference = +new Date("2020-01-01") - +new Date();
+        let timeLeft = {};
 
-
-        if (seconds < 10) {
-        // Add the "0" digit to the front
-        // so 9 becomes "09"
-        seconds = "0" + seconds;
-        }
-
-        if (minutes < 10) {
-        // Add the "0" digit to the front
-        // so 9 becomes "09"
-        minutes = "0" + minutes;
-        
-        }
-
-        // This gets a "handle" to the clock div in our HTML
-        var countDiv = document.getElementById('countdown{{ set.alert_set_id }}');
-
-        // Then we set the text inside the clock div 
-        // to the hours, minutes, and seconds of the current time
-
-        if(t > 0) {
-        countDiv.innerText = days + " days and " + hours + ":" + minutes + ":" + seconds + " Remaining";
-    
-        return {
-            'changes': change + 1 
+        if (difference > 0) {
+        timeLeft = {
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / 1000 / 60) % 60),
+            seconds: Math.floor((difference / 1000) % 60)
         };
         }
-        else {
-        countDiv.innerText = "0 days and 0:00:00 Remaining";
-    
-        return {
-            'changes': change 
-        };
 
+        return timeLeft;
+    };
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+    useEffect(() => {
+        setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+    });
+
+  const timerComponents = [];
+
+    Object.keys(timeLeft).forEach(interval => {
+        if (!timeLeft[interval]) {
+            return;
         }
 
-    }
+        timerComponents.push(
+        <span>
+            {timeLeft[interval]} {interval}{" "}
+        </span>
+        );
+    });
 
-    
     return (
-
-    )
+        <div>
+            {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+        </div>
+    );
 }
