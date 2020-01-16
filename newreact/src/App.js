@@ -38,7 +38,7 @@ export const App = () => {
         client_id="78rUTjeVusqU3vYXyvNpOQiF8jEacf55"
         redirect_uri="https://besafe.ngrok.io"
         onRedirectCallback={onRedirectCallback}
-        loading={<div>yoyoyo</div>}
+        loading={<div>Loading Auth0 login...</div>}
       >
         <Router>
           <Route path="/" exact component={Content}/>
