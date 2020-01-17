@@ -65,6 +65,36 @@ def callback_handling():
     #Redirects to the User Profile
     return redirect('/')
 
+@app.route('/login', methods=['POST'])
+def login_handling():
+    # Handles response from token endpoint
+    data = request.form
+    print('Login Data: ', data)
+    print(request.form.to_dict())
+    print(request.form.get('user'))
+    print(request.form.get('user[]'))
+    print(request.form.get('name'))
+    print(request.form.get('name[]'))
+    print(request)
+    print(request.args)
+
+    #Sets the 'current_user' value in the session to the user's e-mail
+    # session['current_user'] = userinfo['email']
+
+    # #User Table is Queried to see if User already exists in dB
+    # user = User.query.filter_by(email=userinfo['email']).all()
+    
+    # #If the user isn't in the dBase, they are added
+    # if user == []:
+    #     new_user = User(name=userinfo['name'], email=userinfo['email'], username=userinfo['nickname'], fname=userinfo['given_name'], lname=userinfo['family_name'], created_at=datetime.datetime.now())
+    #     db.session.add(new_user)
+    
+    # #The dBase changes are committed
+    # db.session.commit()
+
+    #Redirects to the User Profile
+    return "Success"
+
 @app.route("/contacts")
 def user_contacts():
     """Renders the User's 'contacts' Page"""

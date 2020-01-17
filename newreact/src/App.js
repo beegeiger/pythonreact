@@ -9,6 +9,9 @@ const Content = () => {
     const { loginWithRedirect, user, logout } = useAuth0()
     useEffect(() => {    
         async function loginServer() {
+            console.log('Server Will Be Called');
+            console.log('User: ', {user})
+            console.log(JSON.stringify({user}['user'], null, '  '))
             fetch(('http://127.0.0.1:5000/login'), {
                 method: 'POST', // or 'PUT'
                 headers: {
@@ -19,25 +22,24 @@ const Content = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
+                
             })
                 .catch((error) => {
                 console.error('Error:', error);
             });
         }
-        if ({user}) {
-            loginServer();
-            console.log('Server Login Called')
-        }
-        else {
-            console.log('Server Login Not Called because not logged in')
-        }
+        loginServer();
+        console.log('Server Login Called');
+        console.log('User: ', {user})
+
     }, []);
     return (
         <div className="App">
-            <ContactsHandler />
+            
             {user && <div>
                 <div>{JSON.stringify({user}, null, '  ')}</div>
                 <div onClick={() => logout()}>Logout</div>
+                {/* <ContactsHandler /> */}
             </div>}
             {!user && <div> 
                 <h1>BeSafe Homepage</h1>
