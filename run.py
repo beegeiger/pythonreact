@@ -97,14 +97,10 @@ def login_handling():
 def user_contacts():
     """Renders the User's 'contacts' Page"""
 
-    # user = User.query.filter_by(email=session['current_user']).one()
-    # contacts = Contact.query.filter_by(user_id=user.user_id).order_by(asc(Contact.contact_id)).all()
+    user = User.query.filter_by(auth0_id=session['current_user']).one()
+    contacts = Contact.query.filter_by(user_id=user.user_id).order_by(asc(Contact.contact_id)).all()
 
-    #Queries the current user and their contact info
-    c1 = {'name': 'Bob', 'email': 'bob@gmail.com', 'phone': '555-1010', 'conID': 1}
-    c2 = {'name': 'Susan', 'email': 'susan@gmail.com', 'phone': '555-2010', 'conID': 2}
-    cs = [c1, c2]
-    contacts = json.dumps(cs)
+    contacts = json.dumps(contacts)
 
     return contacts
 
@@ -128,7 +124,7 @@ def edit_contact(contact_id):
     phone = request.form['phone']
     email = request.form['email']
 
-    user = User.query.filter_by(email=userinfo['email']).all()
+    user = User.query.filter_by(auth0_id=userinfo['email']).all()
 
     if contact_id != 'new':
         ((db.session.query(Contact).filter_by(contact_id=contact_id)).update(
