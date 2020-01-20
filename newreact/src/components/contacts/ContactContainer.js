@@ -3,6 +3,8 @@ import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
 export const ContactContainer = props => {
+    const [visState, setVisState] = useState('conMain')
+    
     let name = ''
     let email = ''
     let phone = ''
@@ -17,7 +19,10 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
-    const [visState, setVisState] = useState('conMain')
+    if (typeof props.view !== 'undefined' || props.view == 'None') {
+        setVisState('None');
+    }
+    
 
 
     return (
