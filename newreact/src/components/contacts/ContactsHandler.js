@@ -23,7 +23,7 @@ export const ContactsHandler = props => {
     const conlen = cons.length;
     const conret = []
     for (var i = 0; i < conlen; i++) {
-        conret.push(<ContactContainer conId={ cons[i].conId } name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
+        conret.push(<ContactContainer conId={ cons[i].contact_id } name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
     }
 
     return (

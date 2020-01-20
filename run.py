@@ -124,7 +124,7 @@ def edit_contact(contact_id):
     phone = request.form['phone']
     email = request.form['email']
 
-    user = User.query.filter_by(auth0_id=userinfo['email']).all()
+    user = User.query.filter_by(auth0_id=session['current_user']).one()
 
     if contact_id != 'new':
         ((db.session.query(Contact).filter_by(contact_id=contact_id)).update(
