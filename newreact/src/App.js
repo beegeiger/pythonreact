@@ -8,27 +8,14 @@ import { ContactsHandler } from './components/contacts/ContactsHandler';
 const Content = () => {
     const { loginWithRedirect, user, logout } = useAuth0()
     useEffect(() => {    
-        async function loginServer() {
-            console.log('Server Will Be Called');
-            console.log('User: ', {user})
-            console.log(JSON.stringify({user}['user'], null, '  '))
-            fetch(('http://127.0.0.1:5000/login'), {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({user}, null, '  '),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-                
-            })
-                .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
-        loginServer();
+        const response = fetch(('http://127.0.0.1:5000/login'), {
+            method: 'POST', // or 'PUT'
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({user}, null, '  '),
+        })
+        console.log(response)
         console.log('Server Login Called');
         console.log('User: ', {user})
 

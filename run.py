@@ -2,7 +2,7 @@ from flask import (Flask, render_template, redirect, request, flash,
                    session, jsonify)
 from templates.__init__ import app
 from templates.begin.views import hello_blueprint
-
+from werkzeug.datastructures import ImmutableMultiDict
 import math
 import time
 import json
@@ -68,15 +68,19 @@ def callback_handling():
 @app.route('/login', methods=['POST'])
 def login_handling():
     # Handles response from token endpoint
-    data = request.form
-    print('Login Data: ', data)
-    print(request.form.to_dict())
-    print(request.form.get('user'))
-    print(request.form.get('user[]'))
-    print(request.form.get('name'))
-    print(request.form.get('name[]'))
-    print(request)
-    print(request.args)
+
+    print('data', request.data)
+    print('files', request.files)
+    print('values', request.values)
+    print('json', request.json)
+    print('jsontype', type(request.json))
+    print('json2', request.json['user']['given_name'])
+    fname = request.json['user']['given_name']
+    lname = request.json['user']['family_name']
+    email = request.json['user']['email']
+    auth0_id = request.json['user']['sub']
+   
+
 
     #Sets the 'current_user' value in the session to the user's e-mail
     # session['current_user'] = userinfo['email']
