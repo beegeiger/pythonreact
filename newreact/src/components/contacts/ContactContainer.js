@@ -19,27 +19,34 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
-    if (typeof props.view !== 'undefined' || props.view == 'None') {
+    if (typeof props.view !== 'undefined' || props.view === 'None') {
         setVisState('None');
     }
     
-
+    let visa;
 
     return (
-        <div class="ui cards">
-            <div class="card">
-                <div id="conDisplay">
-                    <Contact name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
-                    <div onclick={() => setVisState('form')} class="ui bottom attached button">
-                        <i class="setting basic icon"></i>
-                        Edit Contact
+        <>
+        {visState !== "None" &&
+            <div class="ui cards">
+                <div class="card">
+                {visState === "conMain" &&      
+                    <div id="conDisplay">
+                        <Contact name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
+                        <div onclick={() => setVisState('form')} class="ui bottom attached button">
+                            <i class="setting basic icon"></i>
+                            Edit Contact
+                        </div>
                     </div>
-                </div>
-                <div id="formDisplay"  vis='hidden' >
-                    <ContactForm name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
-
+                }
+                {visState === "form" &&
+                    <div id="formDisplay">
+                        <ContactForm name={ name } phone={ phone } email={ email } vis='hidden' viewFunction={ setVisState }/>
+                    </div>
+                }    
                 </div>
             </div>
-        </div>
+        }
+        </>
     );
 };

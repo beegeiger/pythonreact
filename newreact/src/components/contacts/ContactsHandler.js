@@ -28,8 +28,8 @@ export const ContactsHandler = props => {
 
     return (
         <>
-        <ContactContainer name="Placeholder" phone="Placeholder" email="Placeholder" />
         { conret }
+        <ContactContainer name="Placeholder" phone="Placeholder" email="Placeholder" view="None" />
         </>
     );
     };

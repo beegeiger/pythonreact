@@ -32,7 +32,7 @@ export const ContactForm = props => {
             .catch((error) => {
             console.error('Error:', error);
         });
-        setVisState('display');
+        setVisState('conMain');
     }
 
     function handleDelete() {
