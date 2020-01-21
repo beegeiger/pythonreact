@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
@@ -19,13 +19,13 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
-    if (typeof props.view !== 'undefined' || props.view === 'None') {
-        setVisState('None');
-    }
+    
 
-    if (typeof props.view !== 'undefined' || props.view === 'form') {
-        setVisState('form');
-    }
+    useEffect(() => {
+        if (typeof props.view !== 'undefined' || props.name.length > 0) {
+            setVisState(props.view);
+        }
+    }, []);
     
     let visa;
 

@@ -24,7 +24,7 @@ const Content = () => {
         <div className="App">
             
             {user && <div>
-                <div>{JSON.stringify({user}, null, '  ')}</div>
+                <ContactsHandler />
                 <div onClick={() => logout()}>Logout</div>
                 {/* <ContactsHandler /> */}
             </div>}
