@@ -5,7 +5,6 @@ export const ContactForm = props => {
     const email = props.email
     const phone = props.phone
     let conId = 'new'
-    let vis = props.vis
     const setVisState = props.viewFunction
 
     if (typeof props.ConId !== 'undefined') {
@@ -28,6 +27,8 @@ export const ContactForm = props => {
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data);
+            conId = data;
+            props.conId = data;
         })
             .catch((error) => {
             console.error('Error:', error);
@@ -55,7 +56,6 @@ export const ContactForm = props => {
     
 
     return (
-        <div class={ vis }>
         <div class="content">
             <form class="ui form">
                 <div class="header">
@@ -82,8 +82,6 @@ export const ContactForm = props => {
                         Delete Contact
                     </div> 
             </form>
-        </div>
- 
         </div>
     );
 };

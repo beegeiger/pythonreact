@@ -45,7 +45,7 @@ export const ContactContainer = props => {
                 }
                 {visState === "form" &&
                     <div id="formDisplay">
-                        <ContactForm name={ name } phone={ phone } email={ email } vis='hidden' viewFunction={ setVisState }/>
+                        <ContactForm name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                     </div>
                 }    
                 </div>
