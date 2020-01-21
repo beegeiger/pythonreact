@@ -22,6 +22,10 @@ export const ContactContainer = props => {
     if (typeof props.view !== 'undefined' || props.view === 'None') {
         setVisState('None');
     }
+
+    if (typeof props.view !== 'undefined' || props.view === 'form') {
+        setVisState('form');
+    }
     
     let visa;
 

@@ -20,6 +20,11 @@ export const ContactsHandler = props => {
         fetchData();
     }, []);
 
+    function handleClick() {
+        document.getElementById("newContact").setState({view: "form"});
+        document.getElemtntById("newConButton").hide()
+    }
+
     const conlen = cons.length;
     const conret = []
     for (var i = 0; i < conlen; i++) {
@@ -29,7 +34,8 @@ export const ContactsHandler = props => {
     return (
         <>
         { conret }
-        <ContactContainer name="Placeholder" phone="Placeholder" email="Placeholder" view="None" />
+        <ContactContainer id="newContact" name="Placeholder" phone="Placeholder" email="Placeholder" view="None" />
+        <button id="newConButton" class="ui button" onClick={ handleClick() }>Follow</button>
         </>
     );
     };
