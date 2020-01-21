@@ -3,8 +3,8 @@ import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
 export const ContactContainer = props => {
-    const [visState, setVisState] = useState('conMain')
-    
+    const [visState, setVisState] = useState('conMain');
+
     let name = ''
     let email = ''
     let phone = ''
@@ -22,19 +22,22 @@ export const ContactContainer = props => {
     
 
     useEffect(() => {
-        if (typeof props.view !== 'undefined' || props.name.length > 0) {
-            setVisState(props.view);
+        if (props.view == "form") {
+            console.log('visState');
+            console.log(visState);
+            setVisState('form');     
+            console.log('visState');
+            console.log(visState);
         }
     }, []);
     
-    let visa;
+   
+
 
     return (
-        <>
-        {visState !== "None" &&
             <div class="ui cards">
                 <div class="card">
-                {visState === "conMain" &&      
+                {visState !== 'form' &&      
                     <div id="conDisplay">
                         <Contact name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                         <div onclick={() => setVisState('form')} class="ui bottom attached button">
@@ -43,14 +46,12 @@ export const ContactContainer = props => {
                         </div>
                     </div>
                 }
-                {visState === "form" &&
+                {visState !== "conMain" &&
                     <div id="formDisplay">
                         <ContactForm name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                     </div>
                 }    
                 </div>
             </div>
-        }
-        </>
     );
 };
