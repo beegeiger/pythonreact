@@ -69,11 +69,16 @@ CORS(app)
 def login_handling():
     # Handles response from token endpoint
 
-    name = request.json['user']['name']
-    username = request.json['user']['nickname']
-    email = request.json['user']['email']
-    auth0_id = str(request.json['user']['sub'])
-    print('auth0:  ', auth0_id)
+    if 'current_user' in session:
+        return "User Already logged In"
+    
+    else:
+        print(request.json)
+        name = request.json['user']['name']
+        username = request.json['user']['nickname']
+        email = request.json['user']['email']
+        auth0_id = str(request.json['user']['sub'])
+        print('auth0:  ', auth0_id)
    
     #Sets the 'current_user' value in the session to the user's e-mail
     session['current_user'] = auth0_id
@@ -149,8 +154,8 @@ def logout():
     session.clear
 
     # Redirect user to logout endpoint
-    params = {'returnTo': url_for('go_home', _external=True), 'client_id': '78rUTjeVusqU3vYXyvNpOQiF8jEacf55'}
-    return redirect(auth0.api_base_url + '/v2/logout?' + urlencode(params))
+
+    return "Logged Out"
 
 #################################################################
 if __name__ == '__main__':

@@ -8,37 +8,44 @@ import { ContactsHandler } from './components/contacts/ContactsHandler';
 const Content = () => {
     const { loginWithRedirect, user, logout } = useAuth0()
     const [loggedIn, setLoggedIn] = useState(false)
-    useEffect(() => {    
-        const response = fetch(('http://127.0.0.1:5000/login'), {
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({user}, null, '  '),
+
+    function loggingout() {
+        console.log('Log Out Called')
+        const response = fetch(('http://127.0.0.1:5000/logout'), {
+            method: 'GET',
         })
         console.log(response)
-        console.log('Server Login Called');
-        console.log('User: ', {user});
-
-    }, []);
-    function loggingout() {
-        console.log('Logout')
-        setLoggedIn(false);  
         logout();
+        while(!user) {
+          setLoggedIn(false);
+          break; 
+        }     
     }
 
-    function logingWithRedirect() {
+    function loginWithRedirecting() {
         loginWithRedirect();
-        if (user) {
-          setLoggedIn(true)
-        };
-    }
-
+        while(user) {
+            console.log('User: ', user)
+            const response = fetch(('http://127.0.0.1:5000/login'), {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({user}, null, '  '),
+            })
+            setLoggedIn(true)
+            console.log(response)
+            console.log('Server Login Called');
+            console.log('User: ', {user});
+            break;
+        }
+      }
+    console.log('Logged In?', loggedIn)
     return (
         <div className="App">
             
             {loggedIn && <div>
-                <ContactsHandler />
+                {/* <ContactsHandler /> */}
                 <div onClick={() => loggingout()}>Logout</div>
 
             </div>}
@@ -46,7 +53,7 @@ const Content = () => {
                 <h1>BeSafe Homepage</h1>
                 <a className="App-link"
                   href="javascript:void(0)"
-                  onClick={() => { logingWithRedirect()}} >
+                  onClick={() => { loginWithRedirecting()}} >
                   Login
                 </a>
             </div>}
