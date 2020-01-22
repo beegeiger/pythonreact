@@ -9,26 +9,25 @@ export const ContactsHandler = props => {
     const forceUpdate = useCallback(() => updateState({}), []);
     const conret = []
 
-    useEffect(() => {
-        async function fetchData() {
-          const res = await fetch("http://127.0.0.1:5000/contacts");
-          res
-            .json()
-            .then(res => setCons(res))
-            .catch(function(error) {
-                console.log('Looks like there was a problem: \n', error);
-              });
-        }
+    // useEffect(() => {
+    //     function fetchData() {
+    //       const res = fetch("http://127.0.0.1:5000/contacts");
+    //       res
+    //         .then(res => setCons(res))
+    //         .catch(function(error) {
+    //             console.log('Looks like there was a problem: \n', error);
+    //           });
+    //     }
     
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
     
 
     const conlen = cons.length;
     
     for (var i = 0; i < conlen; i++) {
-        conret.push(<ContactContainer conId={ cons[i].contact_id } name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } />)
+        conret.push(<ContactContainer conId={ cons[i].contact_id } name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } view="conMain" />)
     }
 
     function handleClick() {
@@ -41,7 +40,8 @@ export const ContactsHandler = props => {
     return (
         <>
         { conret }
-        <ContactContainer conId="newContact" name="a" phone="b" email="c" view="form" />
+        <ContactContainer conId="newContact" name="a" phone="basfasf" email="c" view="conMain" />
+        <ContactContainer conId="newContact" name="azsfzsf" phone="b" email="c" view="form" />
         <button id="newConButton" class="ui button" onClick={ handleClick }>Add New Contact</button>
         </>
     );

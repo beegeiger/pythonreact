@@ -72,7 +72,8 @@ def login_handling():
     name = request.json['user']['name']
     username = request.json['user']['nickname']
     email = request.json['user']['email']
-    auth0_id = request.json['user']['sub']
+    auth0_id = str(request.json['user']['sub'])
+    print('auth0:  ', auth0_id)
    
     #Sets the 'current_user' value in the session to the user's e-mail
     session['current_user'] = auth0_id
@@ -85,11 +86,12 @@ def login_handling():
         new_user = User(name=name, email=email, username=username, auth0_id=auth0_id, created_at=datetime.datetime.now())
         db.session.add(new_user)
         db.session.commit()
+        print('session3', session)
         return "New User Success"
     
     # #The dBase changes are committed
     db.session.commit()
-
+    print('session', session)
     #Redirects to the User Profile
     return "Returning User Success"
 
@@ -97,12 +99,13 @@ def login_handling():
 def user_contacts():
     """Renders the User's 'contacts' Page"""
 
-    user = User.query.filter_by(auth0_id=session['current_user']).one()
-    contacts = Contact.query.filter_by(user_id=user.user_id).order_by(asc(Contact.contact_id)).all()
+    print('Contacts Session ', session)
+    # user = User.query.filter_by(auth0_id= (session['current_user'])).one()
+    # contacts = Contact.query.filter_by(user_id=user.user_id).order_by(asc(Contact.contact_id)).all()
 
-    contacts = json.dumps(contacts)
+    # contacts = json.dumps(contacts)
 
-    return contacts
+    return 'contacts'
 
 @app.route("/del_contact/<contact_id>")
 def delete_contact(contact_id):

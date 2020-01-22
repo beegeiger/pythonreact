@@ -3,11 +3,12 @@ import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
 export const ContactContainer = props => {
-    let [visState, setVisState] = useState('conMain');
+    const [visState, setVisState] = useState(props.view);
 
     let name = ''
     let email = ''
     let phone = ''
+    let view = ''
 
     if (typeof props.name !== 'undefined' || props.name.length > 0) {
         name = props.name
@@ -19,34 +20,40 @@ export const ContactContainer = props => {
         phone = props.phone
     }
 
+
     
 
     useEffect(() => {
-        if (props.view == "form") {
+        if (view === "form") {
             console.log('visState');
+            console.log('View is form')
             console.log(visState);
             setVisState('form');     
             
         }
     }, []);
-    console.log('visState');
-    console.log(visState);
    
+    console.log('visState2');
+    console.log(visState);
+    console.log(props)
+
+    const main = (visState === 'conMain')
+    const conform = (visState === 'form')
 
 
     return (
             <div class="ui cards">
                 <div class="card">
-                {visState === 'conMain' &&      
+                {main &&
                     <div id="conDisplay">
                         <Contact name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
-                        <div onclick={() => setVisState('form')} class="ui bottom attached button">
+                        <div onClick={() => setVisState('form')} class="ui bottom attached button">
                             <i class="setting basic icon"></i>
                             Edit Contact
                         </div>
                     </div>
                 }
-                {visState === "form" &&
+                {!main &&
                     <div id="formDisplay">
                         <ContactForm name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                     </div>

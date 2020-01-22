@@ -29,11 +29,12 @@ export const ContactForm = props => {
             console.log('Success:', data);
             conId = data;
             props.conId = data;
+            setVisState('conMain');
         })
             .catch((error) => {
             console.error('Error:', error);
         });
-        setVisState('conMain');
+        
     }
 
     function handleDelete() {
@@ -47,11 +48,12 @@ export const ContactForm = props => {
         .then((response) => response.json())
         .then((data) => {
             console.log('Success:', data);
+            setVisState('delete');
         })
             .catch((error) => {
             console.error('Error:', error);
         });
-        setVisState('delete');
+        
     }
     
 
@@ -73,11 +75,11 @@ export const ContactForm = props => {
                         <input type="text" name="phone" placeholder="Contact Phone #" value={ phone } onChange={(e) => { setFormPhone(e.target.value) }} />
                     </div>
                 </div>
-                <div class="ui bottom attached button" onclick={handleSave()}>
+                <div class="ui bottom attached button">
                         <i class="setting basic icon"></i>
                         Save Contact
                     </div>
-                    <div class="ui bottom attached button" onclick={handleDelete()}>
+                    <div class="ui bottom attached button">
                         <i class="cancel circle basic icon"></i>
                         Delete Contact
                     </div> 
