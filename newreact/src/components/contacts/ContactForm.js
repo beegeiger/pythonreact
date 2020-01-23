@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 export const ContactForm = props => {
     const name = props.name
@@ -15,31 +15,34 @@ export const ContactForm = props => {
     const [formEmail, setFormEmail] = useState(email)
     const [formPhone, setFormPhone] = useState(phone)
 
-    function handleSave() {
-        let conForm = {'name': formName, 'email': formEmail, 'phone': formPhone}
-        fetch(('http://127.0.0.1:5000/save_contact/' + conId), {
-            method: 'POST', // or 'PUT'
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(conForm),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log('Success:', data);
-            conId = data;
-            props.conId = data;
-            setVisState('conMain');
-        })
-            .catch((error) => {
-            console.error('Error:', error);
-        });
-        
-    }
+    
+    const handleSave = useCallback(
+        () => {
+            let conForm = {'name': formName, 'email': formEmail, 'phone': formPhone}
+            fetch(('http://127.0.0.1:5000/save_contact/' + conId), {
+                method: 'POST', // or 'PUT'
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(conForm),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                conId = data;
+                props.conId = data;
+                setVisState('conMain');
+            })
+                .catch((error) => {
+                console.error('Error:', error);
+            });
+        },
+    );
+    
 
     function handleDelete() {
-        fetch(('http://127.0.0.1:5000/delete_contact' + conId), {
-            method: 'GET',
+        fetch(('http://127.0.0.1:5000/delete_contact/' + conId), {
+            method: 'Delete',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -62,25 +65,25 @@ export const ContactForm = props => {
             <form class="ui form">
                 <div class="header">
                     <div class="field">
-                        <input type="text" name="name" placeholder="Contact Name" value={ name } onChange={(e) => { setFormName(e.target.value) }} required/>
+                        <input type="text" name="name" placeholder="Contact Name" value={ formName } onChange={(e) => { setFormName(e.target.value) }} required/>
                     </div>
                 </div>
                 <div class="description">
                     <div class="field">
-                        <input type="text" name="email" placeholder="Contact E-mail" value={ email } onChange={(e) => { setFormEmail(e.target.value) }} />
+                        <input type="text" name="email" placeholder="Contact E-mail" value={ formEmail } onChange={(e) => { setFormEmail(e.target.value) }} />
                     </div>
                 </div>
                 <div class="description">
                     <div class="field">
-                        <input type="text" name="phone" placeholder="Contact Phone #" value={ phone } onChange={(e) => { setFormPhone(e.target.value) }} />
+                        <input type="text" name="phone" placeholder="Contact Phone #" value={ formPhone } onChange={(e) => { setFormPhone(e.target.value) }} />
                     </div>
                 </div>
                 <div class="ui bottom attached button">
-                        <i class="setting basic icon"></i>
+                        <i class="setting basic icon" onClick={ handleSave }></i>
                         Save Contact
                     </div>
                     <div class="ui bottom attached button">
-                        <i class="cancel circle basic icon"></i>
+                        <i class="cancel circle basic icon" onClick={ handleDelete }></i>
                         Delete Contact
                     </div> 
             </form>
