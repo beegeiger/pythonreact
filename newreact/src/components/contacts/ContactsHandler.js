@@ -42,6 +42,7 @@ export const ContactsHandler = props => {
         { conret }
         <ContactContainer conId="newContact" name="a" phone="basfasf" email="c" view="conMain" />
         <ContactContainer conId="newContact" name="azsfzsf" phone="b" email="c" view="form" />
+        <ContactContainer conId="newContact" name="" phone="" email="" view="form" />
         <button id="newConButton" class="ui button" onClick={ handleClick }>Add New Contact</button>
         </>
     );

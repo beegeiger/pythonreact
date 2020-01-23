@@ -9,6 +9,12 @@ const Content = () => {
     const { loginWithRedirect, user, logout } = useAuth0()
     const [loggedIn, setLoggedIn] = useState(false)
 
+    useEffect(() => {
+        if (user) {
+          setLoggedIn(true);
+        }
+    }, []);
+
     function loggingout() {
         console.log('Log Out Called')
         const response = fetch(('http://127.0.0.1:5000/logout'), {
@@ -45,7 +51,7 @@ const Content = () => {
         <div className="App">
             
             {loggedIn && <div>
-                {/* <ContactsHandler /> */}
+                <ContactsHandler />
                 <div onClick={() => loggingout()}>Logout</div>
 
             </div>}
