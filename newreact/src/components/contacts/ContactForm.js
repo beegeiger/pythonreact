@@ -19,9 +19,11 @@ export const ContactForm = props => {
     const handleSave = useCallback(async () => {
         try {
             let conForm = {'name': formName, 'email': formEmail, 'phone': formPhone}
+            console.log('conForm: ', conForm)
+            console.log(JSON.stringify(conForm))
             const response = await fetch(('http://127.0.0.1:5000/edit_contact/' + conId), {
                 method: 'POST', // or 'PUT'
-                headers: {
+                headers: { 'Access-Control-Allow-Origin': null,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(conForm),
@@ -32,7 +34,7 @@ export const ContactForm = props => {
         }   catch (error) {
             console.log("Looks like there was a problem: \n", error);
         }
-      }, [])
+    }, [handleSave])
 
     
 
@@ -61,7 +63,7 @@ export const ContactForm = props => {
             <form class="ui form">
                 <div class="header">
                     <div class="field">
-                        <input type="text" name="name" placeholder="Contact Name" value={ formName } onChange={(e) => { setFormName(e.target.value) }} required/>
+                        <input type="text" name="name" placeholder="Contact Name" value={ formName } onChange={(e) => { setFormName(e.target.value); console.log('setFormName Called!', formName); }} required/>
                     </div>
                 </div>
                 <div class="description">

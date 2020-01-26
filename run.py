@@ -15,7 +15,7 @@ from sqlalchemy import (update, asc, desc)
 from model import User, Contact, AlertSet, Alert, CheckIn, ReqCheck, connect_to_db, db
 import requests
 import logging
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///besafe'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -124,6 +124,7 @@ def delete_contact(contact_id):
     return "Contact Deleted"
 
 @app.route("/edit_contact/<contact_id>", methods=["POST"])
+@cross_origin()
 def edit_contact(contact_id):
     """Edit's a contact's info"""
 
