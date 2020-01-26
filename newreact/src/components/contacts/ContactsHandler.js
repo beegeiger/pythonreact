@@ -2,49 +2,50 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ContactContainer } from './ContactContainer';
 
 
-
-export const ContactsHandler = props => {
-    const [cons, setCons] = useState({});
-    const [, updateState] = React.useState();
-    const forceUpdate = useCallback(() => updateState({}), []);
-    const conret = []
-
-    // useEffect(() => {
-    //     function fetchData() {
-    //       const res = fetch("http://127.0.0.1:5000/contacts");
-    //       res
-    //         .then(res => setCons(res))
-    //         .catch(function(error) {
-    //             console.log('Looks like there was a problem: \n', error);
-    //           });
-    //     }
-    
-    //     fetchData();
-    // }, []);
-
-    
-
-    const conlen = cons.length;
-    
-    for (var i = 0; i < conlen; i++) {
-        conret.push(<ContactContainer conId={ cons[i].contact_id } name={ cons[i].name } phone={ cons[i].phone } email={ cons[i].email } view="conMain" />)
-    }
-
-    function handleClick() {
-        conret.push(<ContactContainer conId="newContact" name="" phone="" email="" view="form" />);
-        console.log('Button Pushed');
-        console.log(conret);
-        forceUpdate();
-    }
-
+export const ContactsHandler = ({conId, name = '', email = '', phone = '', view}) => {
+    const [contacts, setContacts] = useState([]);
+  
+    const [showNewContact, setShowNewContact] = useState([]);
+  
+    const fetchData = useCallback(async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:5000/contacts");
+        const data = await response.json()
+        console.log('got a response', data);
+        setContacts(data);
+      } catch (error) {
+        console.log("Looks like there was a problem: \n", error);
+      }
+    }, [setContacts])
+  
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
     return (
-        <>
-        { conret }
-        <ContactContainer conId="newContact" name="a" phone="basfasf" email="c" view="conMain" />
-        <ContactContainer conId="newContact" name="azsfzsf" phone="b" email="c" view="form" />
-        <ContactContainer conId="newContact" name="" phone="" email="" view="form" />
-        <button id="newConButton" class="ui button" onClick={ handleClick }>Add New Contact</button>
-        </>
+      <>
+        {contacts.map(contact => (
+          <ContactContainer
+            conId={contact.contact_id}
+            name={contact.name}
+            phone={contact.phone}
+            email={contact.email}
+            view="conMain"
+          />
+        ))}
+        {showNewContact.map(() => (
+          <ContactContainer
+            conId="newContact"
+            view="form"
+          />
+        ))}
+        <button
+          id="newConButton"
+          class="ui button"
+          onClick={() => setShowNewContact([...showNewContact, true])}
+        >
+          Add New Contact
+        </button>
+      </>
     );
-    };
-
+  };
