@@ -100,7 +100,7 @@ def login_handling():
     #Redirects to the User Profile
     return "Returning User Success"
 
-@app.route("/contacts")
+@app.route("/contacts", methods=['POST'])
 def user_contacts():
     """Renders the User's 'contacts' Page"""
 

@@ -16,28 +16,24 @@ export const ContactForm = props => {
     const [formPhone, setFormPhone] = useState(phone)
 
     
-    const handleSave = useCallback(
-        () => {
+    const handleSave = useCallback(async () => {
+        try {
             let conForm = {'name': formName, 'email': formEmail, 'phone': formPhone}
-            fetch(('http://127.0.0.1:5000/save_contact/' + conId), {
+            const response = await fetch(('http://127.0.0.1:5000/edit_contact/' + conId), {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(conForm),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-                conId = data;
-                props.conId = data;
-                setVisState('conMain');
-            })
-                .catch((error) => {
-                console.error('Error:', error);
             });
-        },
-    );
+            const data = await response.json()
+            console.log('got a response', data);
+            setVisState('conMain');
+        }   catch (error) {
+            console.log("Looks like there was a problem: \n", error);
+        }
+      }, [])
+
     
 
     function handleDelete() {
@@ -78,12 +74,12 @@ export const ContactForm = props => {
                         <input type="text" name="phone" placeholder="Contact Phone #" value={ formPhone } onChange={(e) => { setFormPhone(e.target.value) }} />
                     </div>
                 </div>
-                <div class="ui bottom attached button">
-                        <i class="setting basic icon" onClick={ handleSave }></i>
+                <div class="ui bottom attached button" onClick={ handleSave }>
+                        <i class="setting basic icon" ></i>
                         Save Contact
                     </div>
-                    <div class="ui bottom attached button">
-                        <i class="cancel circle basic icon" onClick={ handleDelete }></i>
+                    <div class="ui bottom attached button" onClick={ handleDelete }>
+                        <i class="cancel circle basic icon" ></i>
                         Delete Contact
                     </div> 
             </form>

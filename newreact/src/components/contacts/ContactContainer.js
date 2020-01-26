@@ -10,13 +10,13 @@ export const ContactContainer = props => {
     let phone = ''
     let view = ''
 
-    if (typeof props.name !== 'undefined' || props.name.length > 0) {
+    if (typeof props.name !== 'undefined') {
         name = props.name
     }
-    if (typeof props.email !== 'undefined' || props.email.length > 0) {
+    if (typeof props.email !== 'undefined') {
         email = props.email
     }
-    if (typeof props.phone !== 'undefined' || props.phone.length > 0) {
+    if (typeof props.phone !== 'undefined') {
         phone = props.phone
     }
 
