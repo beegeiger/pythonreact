@@ -28,7 +28,7 @@ const Content = () => {
         }     
     }
 
-    function loginWithRedirecting() {
+    function loggingIn() {
         loginWithRedirect();
         while(user) {
             console.log('User: ', user)
@@ -59,7 +59,7 @@ const Content = () => {
                 <h1>BeSafe Homepage</h1>
                 <a className="App-link"
                   href="javascript:void(0)"
-                  onClick={() => { loginWithRedirecting()}} >
+                  onClick={() => { loggingIn()}} >
                   Login
                 </a>
             </div>}

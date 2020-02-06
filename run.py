@@ -82,7 +82,7 @@ def login_handling():
    
     #Sets the 'current_user' value in the session to the user's e-mail
     session['current_user'] = auth0_id
-
+    print('Session: ', session)
     #User Table is Queried to see if User already exists in dB
     user = User.query.filter_by(auth0_id=auth0_id).all()
     
@@ -129,10 +129,11 @@ def edit_contact(contact_id):
     """Edit's a contact's info"""
 
     #Creates variables from the form on the contacts page
-    name = request.form['name']
-    phone = request.form['phone']
-    email = request.form['email']
 
+    name = request.json['name']
+    phone = request.json['phone']
+    email = request.json['email']
+    print('Session2: ', session)
     user = User.query.filter_by(auth0_id=session['current_user']).one()
 
     if contact_id != 'new':
