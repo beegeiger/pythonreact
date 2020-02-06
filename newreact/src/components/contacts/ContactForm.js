@@ -34,7 +34,7 @@ export const ContactForm = props => {
         }   catch (error) {
             console.log("Looks like there was a problem: \n", error);
         }
-    }, [handleSave])
+    }, [])
 
     
 
