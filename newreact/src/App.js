@@ -28,22 +28,22 @@ const Content = () => {
         }     
     }
 
-    function loggingIn() {
-        loginWithRedirect();
-        while(user) {
-            console.log('User: ', user)
-            const response = fetch(('http://127.0.0.1:5000/login'), {
-                method: 'POST', // or 'PUT'
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({user}, null, '  '),
-            })
-            setLoggedIn(true)
-            console.log(response)
-            console.log('Server Login Called');
-            console.log('User: ', {user});
-            break;
+    async function loggingIn() {
+        await loginWithRedirect();
+        const response = await fetch(('http://127.0.0.1:5000/login'), {
+          method: 'POST', // or 'PUT'
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({user}, null, '  '),
+        })
+        const data = await response.json()
+        if (!data) throw Error('somethings jacked')
+        else {
+          console.log('User: ', user)
+          setLoggedIn(true)
+          console.log('Server Login Called');
+          console.log('User: ', {user});
         }
       }
     console.log('Logged In?', loggedIn)
