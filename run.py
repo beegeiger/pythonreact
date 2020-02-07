@@ -68,7 +68,7 @@ CORS(app)
 @app.route('/login', methods=['POST'])
 def login_handling():
     # Handles response from token endpoint
-
+    
     if 'current_user' in session:
         return "User Already logged In"
     
