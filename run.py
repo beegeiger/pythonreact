@@ -28,7 +28,7 @@ db.init_app(app)
 app.secret_key = "ABC"
 CORS(app)
 
-
+session=session
 
 
 ################################################################

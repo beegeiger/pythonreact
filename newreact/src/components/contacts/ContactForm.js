@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import user from '../../App';
 
 export const ContactForm = props => {
     const name = props.name

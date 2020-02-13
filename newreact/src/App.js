@@ -8,7 +8,6 @@ import { ContactsHandler } from './components/contacts/ContactsHandler';
 const Content = () => {
     const { isAuthenticated, loginWithRedirect, user, logout, loading } = useAuth0()
     const [isLoggedIn, setLoggedIn] = useState(false)
-
     useEffect(() => {
       console.log('Server Login Called', {loading, isAuthenticated, isLoggedIn});
       if (loading) return
