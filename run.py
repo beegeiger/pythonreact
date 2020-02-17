@@ -97,8 +97,12 @@ def login_handling():
     # #The dBase changes are committed
     db.session.commit()
     print('session', session)
+
+    contacts = Contact.query.filter_by(user_id=user[0].user_id).all()
+    all_info = json.dumps(user, contacts)
+    print('all_info: ', all_info)
     #Redirects to the User Profile
-    return "Returning User Success"
+    return all_info
 
 @app.route("/contacts", methods=['POST'])
 def user_contacts():
