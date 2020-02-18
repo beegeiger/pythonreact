@@ -99,7 +99,17 @@ def login_handling():
     print('session', session)
 
     contacts = Contact.query.filter_by(user_id=user[0].user_id).all()
-    all_info = json.dumps(user, contacts)
+    # contacts2 = []
+    # user2 = {}
+    # for key, value in user:
+    #     user2[key] = value
+    # for contact in contacts:
+    #     c = {}
+    #     for key, value in contact:
+    #         c[key] = value
+    #     contacts2.append(c)
+    
+    all_info = json.dumps({'user': user})
     print('all_info: ', all_info)
     #Redirects to the User Profile
     return all_info
