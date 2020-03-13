@@ -50,7 +50,7 @@ const Content = () => {
       <div className="App">
         {isLoggedIn && <div>
           <div onClick={() => logoutHandler()}>Logout</div>
-          <ContactsHandler />
+          <ContactsHandler user_id={user_id} />
         </div>}
         {!isLoggedIn && <div> 
           <h1>BeSafe Homepage</h1>

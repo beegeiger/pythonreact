@@ -130,14 +130,15 @@ def user_contacts_options():
 @app.route("/contacts", methods=['POST'])
 def user_contacts():
     """Renders the User's 'contacts' Page"""
+    print(request.json)
+    user_id = int(request.json['user_id'])
 
-    print('Contacts Session ', session)
-    # user = User.query.filter_by(auth0_id= (session['current_user'])).one()
-    # contacts = Contact.query.filter_by(user_id=user.user_id).order_by(asc(Contact.contact_id)).all()
+    
+    contacts = Contact.query.filter_by(user_id=user_id).order_by(asc(Contact.contact_id)).all()
 
-    # contacts = json.dumps(contacts)
+    contacts = json.dumps(contacts)
 
-    return 'contacts'
+    return contacts
 
 @app.route("/del_contact/<contact_id>", methods=['OPTIONS'])
 def delete_contact_options():

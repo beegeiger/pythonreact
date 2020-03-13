@@ -2,14 +2,21 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ContactContainer } from './ContactContainer';
 
 
-export const ContactsHandler = ({conId, name = '', email = '', phone = '', view}) => {
+export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = '', view}) => {
     const [contacts, setContacts] = useState([]);
   
     const [showNewContact, setShowNewContact] = useState([]);
   
     const fetchData = useCallback(async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/contacts");
+        const response = await fetch(("http://127.0.0.1:5000/contacts"), {
+          method: 'POST', // or 'PUT'
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({'user_id': {user_id}}, null, '  '),
+        }
+        );
         const data = await response.json()
         console.log('got a response', data);
         setContacts(data);
