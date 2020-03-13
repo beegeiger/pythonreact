@@ -2,26 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
-export const ContactContainer = props => {
-    const [visState, setVisState] = useState(props.view);
-
-    let name = ''
-    let email = ''
-    let phone = ''
-    let view = ''
-
-    if (typeof props.name !== 'undefined') {
-        name = props.name
-    }
-    if (typeof props.email !== 'undefined') {
-        email = props.email
-    }
-    if (typeof props.phone !== 'undefined') {
-        phone = props.phone
-    }
-
-
-    
+export const ContactContainer =({conId, user_id, name = '', email = '', phone = '', view}) => {
+    const [visState, setVisState] = useState(view);
 
     useEffect(() => {
         if (view === "form") {
@@ -35,7 +17,7 @@ export const ContactContainer = props => {
    
     console.log('visState2');
     console.log(visState);
-    console.log(props)
+
 
     const main = (visState === 'conMain')
     const conform = (visState === 'form')
@@ -55,7 +37,7 @@ export const ContactContainer = props => {
                 }
                 {!main &&
                     <div id="formDisplay">
-                        <ContactForm name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
+                        <ContactForm user_id={user_id} name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                     </div>
                 }    
                 </div>

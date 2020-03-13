@@ -1,16 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import user from '../../App';
 
-export const ContactForm = props => {
-    const name = props.name
-    const email = props.email
-    const phone = props.phone
-    let conId = 'new'
-    const setVisState = props.viewFunction
+export const ContactForm =({viewFunction, conId='new', user_id, name = '', email = '', phone = '', view}) => {
 
-    if (typeof props.ConId !== 'undefined') {
-        conId = props.conId
-    }
+    const setVisState = viewFunction
+
 
     const [formName, setFormName] = useState(name)
     const [formEmail, setFormEmail] = useState(email)
@@ -19,7 +13,7 @@ export const ContactForm = props => {
     
     const handleSave = useCallback(async () => {
         try {
-            let conForm = {'name': formName, 'email': formEmail, 'phone': formPhone}
+            let conForm = {'user_id': user_id, 'name': formName, 'email': formEmail, 'phone': formPhone, 'contact_id': conId}
             console.log('conForm: ', conForm)
             console.log(JSON.stringify(conForm))
             const response = await fetch(('http://127.0.0.1:5000/edit_contact/' + conId), {

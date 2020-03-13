@@ -165,20 +165,20 @@ def edit_contact(contact_id):
     name = request.json['name']
     phone = request.json['phone']
     email = request.json['email']
-    print('Session2: ', session)
-    user = User.query.filter_by(auth0_id=session['current_user']).one()
+    user_id = request.json['user_id']
+    contact_id = request.json['contact_id']
 
     if contact_id != 'new':
         ((db.session.query(Contact).filter_by(contact_id=contact_id)).update(
         {'name':name, 'email':email, 'phone':phone}))
     else:
-        new_contact = Contact(user_id=user.user_id, name=name, email=email, phone=phone)
+        new_contact = Contact(user_id=user_id, name=name, email=email, phone=phone)
         db.session.add(new_contact)
     db.session.commit()
 
     contact = Contact.query.filter_by(name=name).one()
-
-    return contact.contact_id
+    output = json.dumps({'new_contact_id': contact.contact_id})
+    return output
 
 @app.route("/logout", methods=['OPTIONS'])
 def logout_options():
