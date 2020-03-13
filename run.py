@@ -122,6 +122,11 @@ def login_handling():
     #Redirects to the User Profile
     return user_id
 
+
+@app.route("/contacts", methods=['OPTIONS'])
+def user_contacts_options():
+    return '200'
+
 @app.route("/contacts", methods=['POST'])
 def user_contacts():
     """Renders the User's 'contacts' Page"""
@@ -134,7 +139,11 @@ def user_contacts():
 
     return 'contacts'
 
-@app.route("/del_contact/<contact_id>")
+@app.route("/del_contact/<contact_id>", methods=['OPTIONS'])
+def delete_contact_options():
+    return '200'
+
+@app.route("/del_contact/<contact_id>", methods=['GET'])
 def delete_contact(contact_id):
     """Deletes a user's contact from the dBase"""
 
@@ -170,7 +179,11 @@ def edit_contact(contact_id):
 
     return contact.contact_id
 
-@app.route("/logout")
+@app.route("/logout", methods=['OPTIONS'])
+def logout_options():
+    return '200'
+
+@app.route("/logout", methods=['GET'])
 def logout():
     """Logs user out and deletes them from the session (Tested)"""
 
