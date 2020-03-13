@@ -65,6 +65,11 @@ session=session
 #     #Redirects to the User Profile
 #     return redirect('/')
 
+@app.route('/login', methods=['OPTIONS'])
+def login_options():
+    return '200'
+
+
 @app.route('/login', methods=['POST'])
 def login_handling():
     # Handles response from token endpoint

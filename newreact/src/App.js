@@ -23,6 +23,8 @@ const Content = () => {
             body: JSON.stringify({user}, null, '  '),
           })
           console.log('checking response', {response})
+          const data = await response.json()
+          console.log('got a response', data);
           console.log('User: ', user)
           setLoggedIn(true)
           console.log('User: ', {user});
