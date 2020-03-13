@@ -93,12 +93,15 @@ def login_handling():
         db.session.commit()
         print('session3', session)
         return "New User Success"
-    
+    else:
+        user = user[0]
+        print('Python User: ', user)
+    print('Python User2: ', user)
     # #The dBase changes are committed
     db.session.commit()
     print('session', session)
 
-    contacts = Contact.query.filter_by(user_id=user[0].user_id).all()
+    contacts = Contact.query.filter_by(user_id=user.user_id).all()
     # contacts2 = []
     # user2 = {}
     # for key, value in user:
@@ -108,11 +111,11 @@ def login_handling():
     #     for key, value in contact:
     #         c[key] = value
     #     contacts2.append(c)
-    
-    all_info = json.dumps({'user': user})
-    print('all_info: ', all_info)
+    user_id = json.dumps({'user_id': user.user_id})
+    print('Response to server and type:  ', user_id, type(user_id))
+    # print('all_info: ', all_info)
     #Redirects to the User Profile
-    return all_info
+    return user_id
 
 @app.route("/contacts", methods=['POST'])
 def user_contacts():
