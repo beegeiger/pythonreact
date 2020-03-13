@@ -130,10 +130,10 @@ def user_contacts_options():
 @app.route("/contacts", methods=['POST'])
 def user_contacts():
     """Renders the User's 'contacts' Page"""
-    print(request.json)
-    user_id = int(request.json['user_id'])
+    print('Request.json for Contacts', request.json)
+    user_id = int(request.json['user_id']['user_id'])
 
-    
+    print('User_id: ', user_id)
     contacts = Contact.query.filter_by(user_id=user_id).order_by(asc(Contact.contact_id)).all()
 
     contacts = json.dumps(contacts)

@@ -8,7 +8,7 @@ import { ContactsHandler } from './components/contacts/ContactsHandler';
 const Content = () => {
     const { isAuthenticated, loginWithRedirect, user, logout, loading } = useAuth0()
     const [isLoggedIn, setLoggedIn] = useState(false)
-    let user_id = ""
+    const [user_id, setUser_id] = useState('')
     useEffect(() => {
       console.log('Server Login Called', {loading, isAuthenticated, isLoggedIn});
       if (loading) return
@@ -27,7 +27,8 @@ const Content = () => {
           const data = await response.json()
           console.log('got a response', data);
           console.log('User: ', user)
-          user_id = data.user_id;
+          setUser_id(data.user_id);
+
           console.log('User_id: ', user_id)
           setLoggedIn(true)
           console.log('User: ', {user});

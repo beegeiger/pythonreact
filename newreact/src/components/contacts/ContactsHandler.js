@@ -4,7 +4,7 @@ import { ContactContainer } from './ContactContainer';
 
 export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = '', view}) => {
     const [contacts, setContacts] = useState([]);
-  
+    console.log('Contacts Handler User_id:', user_id, {user_id})
     const [showNewContact, setShowNewContact] = useState([]);
   
     const fetchData = useCallback(async () => {
@@ -33,6 +33,7 @@ export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = 
       <>
         {contacts.map(contact => (
           <ContactContainer
+            user_id={user_id}
             conId={contact.contact_id}
             name={contact.name}
             phone={contact.phone}
@@ -47,6 +48,7 @@ export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = 
           />
         ))}
         <button
+          user_id={user_id}
           id="newConButton"
           class="ui button"
           onClick={() => setShowNewContact([...showNewContact, true])}
