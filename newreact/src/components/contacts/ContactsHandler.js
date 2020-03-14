@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { ContactContainer } from './ContactContainer';
 
 
-export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = '', view}) => {
+export const ContactsHandler = ({user_id, name = '', email = '', phone = ''}) => {
     const [contacts, setContacts] = useState([]);
     console.log('Contacts Handler User_id:', user_id, {user_id})
     const [showNewContact, setShowNewContact] = useState([]);
@@ -34,7 +34,7 @@ export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = 
         {contacts.map(contact => (
           <ContactContainer
             user_id={user_id}
-            conId={contact.contact_id}
+            contactId={contact.contact_id}
             name={contact.name}
             phone={contact.phone}
             email={contact.email}
@@ -43,7 +43,7 @@ export const ContactsHandler = ({conId, user_id, name = '', email = '', phone = 
         ))}
         {showNewContact.map(() => (
           <ContactContainer
-            conId="newContact"
+            contactId="new"
             view="form"
           />
         ))}

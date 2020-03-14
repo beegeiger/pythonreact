@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import user from '../../App';
 
-export const ContactForm =({viewFunction, conId='new', user_id, name = '', email = '', phone = '', view}) => {
+export const ContactForm =({viewFunction, contactIdFunc, conId='new', user_id, name = '', email = '', phone = '', view}) => {
 
     const setVisState = viewFunction
-
+    const setConId = contactIdFunc
 
     const [formName, setFormName] = useState(name)
     const [formEmail, setFormEmail] = useState(email)
@@ -25,6 +25,7 @@ export const ContactForm =({viewFunction, conId='new', user_id, name = '', email
             });
             const data = await response.json()
             console.log('got a response', data);
+            setConId(data.new_contact_id)
             setVisState('conMain');
         }   catch (error) {
             console.log("Looks like there was a problem: \n", error);

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { ContactForm } from './ContactForm';
 import { Contact } from './Contact';
 
-export const ContactContainer =({conId, user_id, name = '', email = '', phone = '', view}) => {
+export const ContactContainer =({contactId, user_id, name = '', email = '', phone = '', view}) => {
     const [visState, setVisState] = useState(view);
-
+    const [conId, setConId] = useState(contactId)
     useEffect(() => {
         if (view === "form") {
             console.log('visState');
@@ -28,7 +28,7 @@ export const ContactContainer =({conId, user_id, name = '', email = '', phone = 
                 <div class="card">
                 {main &&
                     <div id="conDisplay">
-                        <Contact name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
+                        <Contact conId={conId} name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                         <div onClick={() => setVisState('form')} class="ui bottom attached button">
                             <i class="setting basic icon"></i>
                             Edit Contact
@@ -37,7 +37,7 @@ export const ContactContainer =({conId, user_id, name = '', email = '', phone = 
                 }
                 {!main &&
                     <div id="formDisplay">
-                        <ContactForm user_id={user_id} name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
+                        <ContactForm conId={conId} contactIdFunc={ setConId } user_id={user_id} name={ name } phone={ phone } email={ email } viewFunction={ setVisState }/>
                     </div>
                 }    
                 </div>
