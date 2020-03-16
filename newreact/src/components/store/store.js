@@ -7,8 +7,11 @@ const { Provider } = store;
 const StateProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch(action.type) {
-      case 'action description':
-        const newState = // do something with the action
+      case 'addContact':
+        const contactName = action.data.name
+        const contactId = action.data.conId
+        state.[contactName] = contactId
+        const newState = state
         return newState;
       default:
         throw new Error();
