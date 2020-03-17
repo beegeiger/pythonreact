@@ -135,8 +135,12 @@ def user_contacts():
 
     print('User_id: ', user_id)
     contacts = Contact.query.filter_by(user_id=user_id).order_by(asc(Contact.contact_id)).all()
+    output = []
+    for c in contacts:
+        output.append(c.as_dict())
+    print ("Contacts Output: ", output)
     print ("Contacts Called All Contacts: ", contacts)
-    contacts = json.dumps(contacts)
+    contacts = json.dumps(output)
 
     return contacts
 
@@ -161,7 +165,7 @@ def edit_contact(contact_id):
     """Edit's a contact's info"""
 
     #Creates variables from the form on the contacts page
-
+    print("Edit Contact request.json: ", request.json)
     name = request.json['name']
     phone = request.json['phone']
     email = request.json['email']
@@ -178,7 +182,7 @@ def edit_contact(contact_id):
         db.session.add(new_contact)
         db.session.commit()
         contact = Contact.query.order_by(Contact.contact_id.desc()).first()
-    
+        print("Edit Contact Output: ", contact)
 
     
     output = json.dumps({'new_contact_id': contact.contact_id})

@@ -55,6 +55,9 @@ class Contact(db.Model):
 	c_type = db.Column(db.String(48), nullable=True)
 	c_message = db.Column(db.String(1028), nullable=True)
 
+	def as_dict(self):
+		return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+	
 	def __repr__(self):
 		"""Provide helpful representation when printed."""
 		return "<contact_id={} user_id={} name={} email={} phone={} c_type={} c_message={}>".format(
