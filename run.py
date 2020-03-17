@@ -135,7 +135,7 @@ def user_contacts():
 
     print('User_id: ', user_id)
     contacts = Contact.query.filter_by(user_id=user_id).order_by(asc(Contact.contact_id)).all()
-
+    print ("Contacts Called All Contacts: ", contacts)
     contacts = json.dumps(contacts)
 
     return contacts
@@ -171,12 +171,16 @@ def edit_contact(contact_id):
     if contact_id != 'new':
         ((db.session.query(Contact).filter_by(contact_id=contact_id)).update(
         {'name':name, 'email':email, 'phone':phone}))
+        contact = Contact.query.filter_by(contact_id=contact_id).one()
+        db.session.commit()
     else:
         new_contact = Contact(user_id=user_id, name=name, email=email, phone=phone)
         db.session.add(new_contact)
-    db.session.commit()
+        db.session.commit()
+        contact = Contact.query.order_by(Contact.contact_id.desc()).first()
+    
 
-    contact = Contact.query.filter_by(name=name).one()
+    
     output = json.dumps({'new_contact_id': contact.contact_id})
     return output
 

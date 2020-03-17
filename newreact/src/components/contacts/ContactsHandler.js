@@ -6,7 +6,7 @@ export const ContactsHandler = ({user_id, name = '', email = '', phone = ''}) =>
     const [contacts, setContacts] = useState([]);
     console.log('Contacts Handler User_id:', user_id, {user_id})
     const [showNewContact, setShowNewContact] = useState([]);
-  
+    const uId = user_id
     const fetchData = useCallback(async () => {
       try {
         const response = await fetch(("http://127.0.0.1:5000/contacts"), {
@@ -43,12 +43,12 @@ export const ContactsHandler = ({user_id, name = '', email = '', phone = ''}) =>
         ))}
         {showNewContact.map(() => (
           <ContactContainer
+            user_id={user_id}
             contactId="new"
             view="form"
           />
         ))}
         <button
-          user_id={user_id}
           id="newConButton"
           class="ui button"
           onClick={() => setShowNewContact([...showNewContact, true])}

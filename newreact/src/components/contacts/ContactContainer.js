@@ -5,6 +5,7 @@ import { Contact } from './Contact';
 export const ContactContainer =({contactId, user_id, name = '', email = '', phone = '', view}) => {
     const [visState, setVisState] = useState(view);
     const [conId, setConId] = useState(contactId)
+    console.log('Contacts Container User_id:', user_id, {user_id})
     useEffect(() => {
         if (view === "form") {
             console.log('visState');

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import user from '../../App';
 
 export const ContactForm =({viewFunction, contactIdFunc, conId='new', user_id, name = '', email = '', phone = '', view}) => {
-
+    console.log('Contacts Form User_id:', user_id, {user_id})
     const setVisState = viewFunction
     const setConId = contactIdFunc
 
